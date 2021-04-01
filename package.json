@@ -1,0 +1,26 @@
+{
+  "name": "sapui5-testapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikita-Galushkin/sapui5-testapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikita-Galushkin/sapui5-testapp/issues"
+  },
+  "homepage": "https://github.com/Nikita-Galushkin/sapui5-testapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
