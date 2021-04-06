@@ -1,8 +1,9 @@
 sap.ui.define([
   'sap/ui/core/UIComponent',
   'sap/ui/model/json/JSONModel',
-  './controller/HelloDialog'
-], function (UIComponent, JSONModel, HelloDialog) {
+  './controller/HelloDialog',
+	"sap/ui/Device"
+], function (UIComponent, JSONModel, HelloDialog, Device) {
   'use strict';
   return UIComponent.extend('sap.ui.demo.walkthrough.Component', {
     metadata : {
@@ -17,7 +18,13 @@ sap.ui.define([
       };
       var oModel = new JSONModel(oData);
       this.setModel(oModel);
+
+      var oDeviceModel = new JSONModel(Device);
+			oDeviceModel.setDefaultBindingMode("OneWay");
+			this.setModel(oDeviceModel, "device");
+
       this._helloDialog = new HelloDialog(this.getRootControl());
+      this.getRouter().initialize();
 		},
 		exit : function() {
 			this._helloDialog.destroy();
@@ -25,6 +32,16 @@ sap.ui.define([
 		},
 		openHelloDialog : function () {
 			this._helloDialog.open();
-    }
+    },
+    getContentDensityClass : function () {
+			if (!this._sContentDensityClass) {
+				if (!Device.support.touch) {
+					this._sContentDensityClass = "sapUiSizeCompact";
+				} else {
+					this._sContentDensityClass = "sapUiSizeCozy";
+				}
+			}
+			return this._sContentDensityClass;
+		}
   });
 });
